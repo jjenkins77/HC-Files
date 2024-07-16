@@ -1,0 +1,30 @@
+// script.js
+
+// Your movie data array
+const movies = [...]; // Your movie data goes here
+
+function generateGameGrid() {
+    const gridContainer = document.getElementById('game-container');
+
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+
+            const gridItem = document.createElement('div');
+            gridItem.classList.add('grid-item');
+            gridItem.textContent = `Title: ${randomMovie['Title']}`;
+
+            // Add click event listener
+            gridItem.addEventListener('click', () => showMovieDetails(randomMovie));
+
+            gridContainer.appendChild(gridItem);
+        }
+    }
+}
+
+function showMovieDetails(movie) {
+    alert(`Title: ${movie['Title']}\nDirector: ${movie['Director'][0]}\nActors: ${movie['Actors'].join(', ')}\nPlot: ${movie['Plot']}`);
+}
+
+// Call the function to generate the initial game grid
+generateGameGrid();
